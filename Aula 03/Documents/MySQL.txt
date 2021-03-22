@@ -1,0 +1,11 @@
+
+ * Instalando o MySQL
+        https://www.logicbig.com/how-to/database/mysql-install.html
+
+
+ * Instalação da Ferramenta de Banco de Dados
+        https://www.logicbig.com/how-to/intellij/intellij-community-edition-connecting-database.html
+
+
+ * Resolvendo o problema do TimeZone (Sistema usando lingua Inglesa e Localização Brazil)
+        https://www.guj.com.br/t/resolvido-como-resolver-o-problema-de-horario-de-verao-do-mysql-em-aplicacoes-spring-boot/378449/2

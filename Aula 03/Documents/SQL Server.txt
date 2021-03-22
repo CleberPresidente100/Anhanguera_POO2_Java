@@ -1,0 +1,15 @@
+ * SQL Server Connector
+        https://docs.microsoft.com/pt-br/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15
+        https://docs.microsoft.com/pt-br/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15
+
+
+ * Instalação da Ferramenta de Banco de Dados
+        https://www.logicbig.com/how-to/intellij/intellij-community-edition-connecting-database.html
+
+
+ * Configuração do Banco de Dados
+        https://www.jetbrains.com/help/idea/db-tutorial-connecting-to-ms-sql-server.html
+        https://www.jetbrains.com/help/idea/db-tutorial-connecting-to-ms-sql-server.html#step-2-configure-sql-server-management-studio-ssms
+
+ * Chave de Conexão
+	    https://www.codejava.net/java-se/jdbc/connect-to-microsoft-sql-server-via-jdbc

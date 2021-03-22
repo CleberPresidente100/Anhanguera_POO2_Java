@@ -1,0 +1,6 @@
+
+    * Expressões Regulares
+        https://www.devmedia.com.br/conceitos-basicos-sobre-expressoes-regulares-em-java/27539
+        https://www.programacaoprogressiva.net/2012/08/java-expressoes-regulares-regex-em-java_2423.html
+        https://aurelio.net/regex/apostila-conhecendo-regex.pdf
+        https://www.piazinho.com.br/download/expressoes-regulares-3-tabelas.pdf
