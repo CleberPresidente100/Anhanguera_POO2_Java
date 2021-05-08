@@ -1,0 +1,38 @@
+Exercício 
+
+ 
+
+Criar um sistema de controle de sensores de temperatura num prédio especial. 
+
+Este prédio conta com 12 sensores 
+
+ 
+
+4 sensores da marca XSC [-15 C .. 45 C] 
+
+4 sensores da marca YSC [ 0 C .. 80 C] 
+
+4 sensores da marca PSC [10 F .. 120 F] 
+
+ 
+
+Crie classes para representar cada sensor por uma marca. 
+
+E que tenham um método que retorne uma temperatura 
+
+ 
+
+Crie um sistema para capturar as temperaturas dos sensores a cada 10 min 
+
+ 
+
+E aplique a seguinte regra de aviso no dashboard 
+
+ 
+
+Luz verde se a temperatura estiver entre 19 C e 23 C 
+
+Luz amarela se a temperatura estiver entre 5 C e 18 C 
+
+Luz vermelha se a temperatura estiver menor que 5 C ou maior 24 C 
+
