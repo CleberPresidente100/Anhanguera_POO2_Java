@@ -1,34 +1,89 @@
 
-/**
- * Write a description of class Tela here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Tela
-{
-    // instance variables - replace the example below with your own
-    private int x;
-    private EnumCoresTemperaturas c;
+import java.awt.Container;
+import java.util.ArrayList;
 
-    /**
-     * Constructor for objects of class Tela
-     */
-    public Tela()
-    {
-        // initialise instance variables
-        x = 0;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import GerenciadorSensores.DadosSensor;
+import GerenciadorSensores.GerenciadorSensores;
+
+
+public class Tela extends JFrame{
+    
+    private GerenciadorSensores gerenciadorSensores;
+
+    // Tabela
+    private JTable tabTabelaMonitoramento;
+    private DefaultTableModel estruturaTabela;
+
+    // Container da Tela
+    private Container container;
+
+
+    
+    public Tela(GerenciadorSensores gerenciadorSensores){
+
+        this.gerenciadorSensores = gerenciadorSensores;
+        CriarTela();
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+
+
+    private void CriarTela(){
+
+        ConstruirLayout();
+        AtualizarTabela();
+
+    }
+
+    
+
+    private void ConstruirLayout(){
+
+        setSize(410, 280);
+        setTitle("Monitor Sensores de Temperatura");
+
+        // Configurações do Container
+        container = getContentPane();
+        container.setLayout(null);
+
+    
+        // Configurações da Tabela
+        estruturaTabela = new DefaultTableModel();
+        tabTabelaMonitoramento = new JTable(estruturaTabela);
+        estruturaTabela.addColumn("ID Sensor");
+        estruturaTabela.addColumn("Status");
+        estruturaTabela.addColumn("Temperatura");
+        estruturaTabela.addColumn("Fabricante");
+        JScrollPane painel = new JScrollPane(tabTabelaMonitoramento);
+        painel.setBounds(10, 10, 390, 240);
+
+
+        container.add(painel);
+
+
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    
+
+    public void AtualizarTabela(){
+
+
+        ArrayList<DadosSensor> dadosSensores = gerenciadorSensores.lerInformacoesTodosSensores();
+        
+        estruturaTabela.setNumRows(0);
+        
+        for (DadosSensor dadosSensor : dadosSensores) {
+
+            estruturaTabela.addRow(new Object[]{
+                dadosSensor.idSensor,
+                dadosSensor.corTemperatura,
+                dadosSensor.temperaturaSensor,
+                dadosSensor.nomeFabricanteSensor
+            });
+        }
     }
 }

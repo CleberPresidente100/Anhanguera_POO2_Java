@@ -1,33 +1,21 @@
 
-/**
- * Write a description of class Main here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Main
-{
-    // instance variables - replace the example below with your own
-    private int x;
+import GerenciadorSensores.GerenciadorSensores;
 
-    /**
-     * Constructor for objects of class Main
-     */
-    public Main()
-    {
-        // initialise instance variables
-        x = 0;
-    }
+public class Main{
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    private static final int quantidadeSensoresPSC = 4;
+    private static final int quantidadeSensoresXSC = 4;
+    private static final int quantidadeSensoresYSC = 4;
+
+    public static void main(String[] args) throws InterruptedException{
+
+        GerenciadorSensores gerenciadorSensores = new GerenciadorSensores(quantidadeSensoresPSC, quantidadeSensoresXSC, quantidadeSensoresYSC);
+        Tela tela = new Tela(gerenciadorSensores);
+
+        while(true){
+
+            Thread.sleep(1000);
+            tela.AtualizarTabela();
+        }
     }
 }

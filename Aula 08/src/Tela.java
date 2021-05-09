@@ -1,30 +1,39 @@
 
 import java.awt.Container;
+import java.util.ArrayList;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import GerenciadorSensores.DadosSensor;
+import GerenciadorSensores.GerenciadorSensores;
 
 
 public class Tela extends JFrame{
     
-    private JLabel lblStatusSensorPSC;
-    private JLabel lblNomeSensorPSC;
-    private JLabel lblTemperaturaSensorPSC;
+    private GerenciadorSensores gerenciadorSensores;
+
+    // Tabela
+    private JTable tabTabelaMonitoramento;
+    private DefaultTableModel estruturaTabela;
+
+    // Container da Tela
+    private Container container;
+
+
     
-    private JLabel lblStatusSensorXSC;
-    private JLabel lblNomeSensorXSC;
-    private JLabel lblTemperaturaSensorXSC;
-    
-    private JLabel lblStatusSensorYSC;
-    private JLabel lblNomeSensorYSC;
-    private JLabel lblTemperaturaSensorYSC;
+    public Tela(GerenciadorSensores gerenciadorSensores){
 
-    private Container ctn;
+        this.gerenciadorSensores = gerenciadorSensores;
+        CriarTela();
+    }
 
 
 
-    public void CriarTela(){
+    private void CriarTela(){
 
         ConstruirLayout();
-        ConfigurarEventos();
+        AtualizarTabela();
 
     }
 
@@ -32,59 +41,49 @@ public class Tela extends JFrame{
 
     private void ConstruirLayout(){
 
-        setSize(400, 250);
+        setSize(500, 280);
         setTitle("Monitor Sensores de Temperatura");
 
-        ctn = getContentPane();
-        ctn.setLayout(null);
-
-
-    
-        lblStatusSensorPSC = new JLabel("");
-        lblNomeSensorPSC = new JLabel("");
-        lblTemperaturaSensorPSC = new JLabel("");
-
-        lblStatusSensorXSC = new JLabel("");
-        lblNomeSensorXSC = new JLabel("");
-        lblTemperaturaSensorXSC = new JLabel("");
-
-        lblStatusSensorYSC = new JLabel("");
-        lblNomeSensorYSC = new JLabel("");
-        lblTemperaturaSensorYSC = new JLabel("");
-
+        // Configurações do Container
+        container = getContentPane();
+        container.setLayout(null);
 
     
-        lblStatusSensorPSC.setBounds();
-        lblNomeSensorPSC.setBounds();
-        lblTemperaturaSensorPSC.setBounds();
-
-        lblStatusSensorXSC.setBounds();
-        lblNomeSensorXSC.setBounds();
-        lblTemperaturaSensorXSC.setBounds();
-
-        lblStatusSensorYSC.setBounds();
-        lblNomeSensorYSC.setBounds();
-        lblTemperaturaSensorYSC.setBounds();
+        // Configurações da Tabela
+        estruturaTabela = new DefaultTableModel();
+        tabTabelaMonitoramento = new JTable(estruturaTabela);
+        estruturaTabela.addColumn("ID Sensor");
+        estruturaTabela.addColumn("Status");
+        estruturaTabela.addColumn("Temperatura (ºC)");
+        estruturaTabela.addColumn("Fabricante");
+        JScrollPane painel = new JScrollPane(tabTabelaMonitoramento);
+        painel.setBounds(10, 10, 480, 240);
 
 
-    
-        ctn.add(lblStatusSensorPSC);
-        ctn.add(lblNomeSensorPSC);
-        ctn.add(lblTemperaturaSensorPSC);
+        container.add(painel);
 
-        ctn.add(lblStatusSensorXSC);
-        ctn.add(lblNomeSensorXSC);
-        ctn.add(lblTemperaturaSensorXSC);
 
-        ctn.add(lblStatusSensorYSC);
-        ctn.add(lblNomeSensorYSC);
-        ctn.add(lblTemperaturaSensorYSC);
-
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     
 
-    private void ConfigurarEventos(){
+    public void AtualizarTabela(){
 
+
+        ArrayList<DadosSensor> dadosSensores = gerenciadorSensores.lerInformacoesTodosSensores();
+        
+        estruturaTabela.setNumRows(0);
+        
+        for (DadosSensor dadosSensor : dadosSensores) {
+
+            estruturaTabela.addRow(new Object[]{
+                dadosSensor.idSensor,
+                dadosSensor.corTemperatura,
+                dadosSensor.temperaturaSensor,
+                dadosSensor.nomeFabricanteSensor
+            });
+        }
     }
 }
