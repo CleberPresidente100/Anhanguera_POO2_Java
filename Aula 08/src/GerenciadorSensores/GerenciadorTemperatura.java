@@ -8,12 +8,12 @@ public class GerenciadorTemperatura {
 
     private LocalDateTime dataHora;
 
-    private static final int intervaloDeLeitura = 5;
+    private static final int intervaloDeLeituraEmSegundos = 5;
 
 
 
     public GerenciadorTemperatura(){
-        dataHora = LocalDateTime.now().minusSeconds(intervaloDeLeitura);
+        dataHora = LocalDateTime.now().minusSeconds(intervaloDeLeituraEmSegundos);
     }
 
 
@@ -23,7 +23,7 @@ public class GerenciadorTemperatura {
         long secondsDiff = ChronoUnit.SECONDS.between(dataHora, LocalDateTime.now());
 
         // Só gera uma nova temperatura caso já tenha se passado 5 segundos
-        if(secondsDiff >= intervaloDeLeitura){
+        if(secondsDiff >= intervaloDeLeituraEmSegundos){
 
             dataHora = LocalDateTime.now();
 

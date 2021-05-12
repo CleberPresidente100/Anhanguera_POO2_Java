@@ -22,9 +22,9 @@ public class Tela extends JFrame{
 
 
     
-    public Tela(GerenciadorSensores gerenciadorSensores){
+    public Tela(){
 
-        this.gerenciadorSensores = gerenciadorSensores;
+        this.gerenciadorSensores = new GerenciadorSensores();
         CriarTela();
     }
 
@@ -41,7 +41,7 @@ public class Tela extends JFrame{
 
     private void ConstruirLayout(){
 
-        setSize(500, 280);
+        setSize(500, 260);
         setTitle("Monitor Sensores de Temperatura");
 
         // Configurações do Container
@@ -57,7 +57,7 @@ public class Tela extends JFrame{
         estruturaTabela.addColumn("Temperatura (ºC)");
         estruturaTabela.addColumn("Fabricante");
         JScrollPane painel = new JScrollPane(tabTabelaMonitoramento);
-        painel.setBounds(10, 10, 480, 240);
+        painel.setBounds(10, 10, 480, 214);
 
 
         container.add(painel);

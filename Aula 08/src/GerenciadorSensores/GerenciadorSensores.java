@@ -5,31 +5,42 @@ import java.util.ArrayList;
 
 public class GerenciadorSensores {
 
-    private ArrayList<ISensorTemperatura> listaSensores;
+    // Esta variável pode ser substituida pelo listaSensores.size(), mas será
+    // mantida para efeitos didaticos.
+    private static int idNovoSensor;
 
+    private static ArrayList<ISensorTemperatura> listaSensores;
     
 
-    public GerenciadorSensores(int quantidadeSensoresPSC, int quantidadeSensoresXSC, int quantidadeSensoresYSC){
+    public GerenciadorSensores(){
         
-        int idSensor = 0;
-        listaSensores = new ArrayList<ISensorTemperatura>();
+        if(listaSensores == null){
+    
+            idNovoSensor = 0;
+            
+            listaSensores = new ArrayList<ISensorTemperatura>();
+        }
+    }
+    
+
+    public void AdicionarSensores(int quantidadeSensoresPSC, int quantidadeSensoresXSC, int quantidadeSensoresYSC){
 
         for(int contador = 0; contador < quantidadeSensoresPSC; contador++){
 
-            idSensor++;
-            listaSensores.add(new SensorPSC(idSensor));
+            idNovoSensor++;
+            listaSensores.add(new SensorPSC(idNovoSensor));
         }
 
         for(int contador = 0; contador < quantidadeSensoresXSC; contador++){
             
-            idSensor++;
-            listaSensores.add(new SensorXSC(idSensor));
+            idNovoSensor++;
+            listaSensores.add(new SensorXSC(idNovoSensor));
         }
 
         for(int contador = 0; contador < quantidadeSensoresYSC; contador++){
             
-            idSensor++;
-            listaSensores.add(new SensorYSC(idSensor));
+            idNovoSensor++;
+            listaSensores.add(new SensorYSC(idNovoSensor));
         }
     }
 
