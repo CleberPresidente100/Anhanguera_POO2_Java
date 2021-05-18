@@ -1,8 +1,16 @@
 
 public interface IoT
-{    
-    boolean ligar();
-    boolean desligar();
-    boolean estaLigado();
-    
+{ 
+    int getId();
+    void setId(int id);
+
+    void ligar();
+    void desligar();
+    boolean getEstado();
+
+    String getNome();
+    void setNome(String nome);
+
+    String getLocalizacao();
+    void setLocalizacao(String localizacao);
 }

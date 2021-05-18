@@ -1,5 +1,7 @@
 
-public class Lampada implements IoT
+
+// A Interface Comparable é utilizada para realizar a ordenação de objetos da Classe Lampada.
+public class Lampada implements IoT, Comparable<Lampada>
 {
     private int idLampada;
     private boolean estado;
@@ -59,5 +61,9 @@ public class Lampada implements IoT
         this.localizacao = localizacao;
     }
 
-    
+    // Método da Interface Comparable que realiza a ordenação dos Objetos desta Classe.
+    @Override
+    public int compareTo(Lampada lampada) {
+        return this.idLampada - lampada.getId();
+    }
 }
