@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.awt.Container;
 import java.awt.BorderLayout;
+import java.awt.Component;
 
 
 
@@ -21,8 +22,9 @@ public class TelaPrincipal extends JFrame implements ActionListener{
         {
             this.listaTelas = listaTelas;
             containerTelaPrincipal = getContentPane();
-            containerTelaPrincipal.setLayout(null);
+            // containerTelaPrincipal.setLayout(null);
             // containerTelaPrincipal.setLayout(new BoxLayout(containerTelaPrincipal, BoxLayout.PAGE_AXIS));
+            containerTelaPrincipal.setLayout(new BorderLayout());
             
             ConfigurarMenu();
             MontarTela(null);
@@ -64,7 +66,10 @@ public class TelaPrincipal extends JFrame implements ActionListener{
         JMenuItem itemMenu = null;
 
         JMenu menuOpcoes = new JMenu("Opções");
+        menuOpcoes.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         JMenu menuListaIoTs = new JMenu("Lista de IoTs");
+        menuListaIoTs.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         for (Tela item : listaTelas) {
             
@@ -124,9 +129,14 @@ public class TelaPrincipal extends JFrame implements ActionListener{
     private void MontarTela(JComponent tela){
 
         containerTelaPrincipal.removeAll();
-        containerTelaPrincipal.add(BorderLayout.NORTH, barraMenu);
+        // containerTelaPrincipal.add(BorderLayout.NORTH, barraMenu);
+        // containerTelaPrincipal.add(barraMenu, BorderLayout.NORTH);
+        // containerTelaPrincipal.add(barraMenu);
+        containerTelaPrincipal.add(barraMenu, BorderLayout.PAGE_START);
 
         if(tela != null){
+            // containerTelaPrincipal.add(tela);
+            // containerTelaPrincipal.add(tela, BorderLayout.PAGE_END);
             containerTelaPrincipal.add(tela, BorderLayout.CENTER);
         }
 

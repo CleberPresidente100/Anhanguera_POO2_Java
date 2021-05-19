@@ -42,7 +42,7 @@ public class TelaAdministrador extends JPanel{
     private void CriarTela(){
 
         telaAdministrador = this;
-        // telaAdministrador.setLayout(new BoxLayout(telaAdministrador, BoxLayout.PAGE_AXIS));
+        // telaAdministrador.setLayout(new BoxLayout(telaAdministrador, BoxLayout.Y_AXIS));
         telaAdministrador.setLayout(null);
 
         ConstruirLayout();
