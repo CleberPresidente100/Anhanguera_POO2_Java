@@ -8,6 +8,7 @@ Acessados em 05/2021.
 
     https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI.html
     https://www.guru99.com/java-swing-gui.html
+    https://docs.oracle.com/javase/tutorial/uiswing/components/panel.html
     https://www.tutorialsfield.com/jframe-java-tutorial/
     https://www.javatpoint.com/java-jframe
 

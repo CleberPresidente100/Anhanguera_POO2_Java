@@ -60,7 +60,15 @@ public class TelaUsuario extends JScrollPane{
         // setVisible(true);
 
 
+        this.add(lblTeste);
 
+    }
+
+
+
+    public JComponent getTelaAdministrador(){
+
+        return this;
     }
     
 }

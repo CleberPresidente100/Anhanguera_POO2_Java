@@ -10,21 +10,36 @@ import java.awt.BorderLayout;
 public class TelaPrincipal extends JFrame implements ActionListener{
 
     private JMenuBar barraMenu;
+    private JPanel painel;
     private Container containerTelaPrincipal;
     private ArrayList<Tela> listaTelas;
 
 
     public TelaPrincipal(ArrayList<Tela> listaTelas){
-    // public TelaPrincipal(){
 
         if(containerTelaPrincipal == null)
         {
             this.listaTelas = listaTelas;
             containerTelaPrincipal = getContentPane();
+            containerTelaPrincipal.setLayout(null);
+            // containerTelaPrincipal.setLayout(new BoxLayout(containerTelaPrincipal, BoxLayout.PAGE_AXIS));
             
             ConfigurarMenu();
             MontarTela(null);
             ConfigurarJFrame();
+
+
+
+            painel = new JPanel();
+            ArrayList<String> listaIDs = new ArrayList<String>();
+            ArrayList<String> listaTiposIoTs = new ArrayList<String>();
+            listaIDs.add("1");
+            listaIDs.add("2");
+            listaIDs.add("3");
+            listaTiposIoTs.add("Lâmpada");
+            listaTiposIoTs.add("Sensor Temperatura");
+            TelaAdministrador teste = new TelaAdministrador(listaIDs, listaTiposIoTs);
+            MontarTela(teste.getTelaAdministrador());
         }
     }
 
@@ -112,7 +127,7 @@ public class TelaPrincipal extends JFrame implements ActionListener{
         containerTelaPrincipal.add(BorderLayout.NORTH, barraMenu);
 
         if(tela != null){
-            containerTelaPrincipal.add(BorderLayout.AFTER_LAST_LINE, tela);
+            containerTelaPrincipal.add(tela, BorderLayout.CENTER);
         }
 
         containerTelaPrincipal.repaint();

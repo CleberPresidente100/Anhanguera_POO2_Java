@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class Main{
 
@@ -34,6 +34,19 @@ public class Main{
         // listaLampadas.editarLampada(lampada04, lampada02);
 
 
+        ArrayList<String> listaIDs = new ArrayList<String>();
+        ArrayList<String> listaTiposIoTs = new ArrayList<String>();
+
+
+        listaIDs.add("1");
+        listaIDs.add("2");
+        listaIDs.add("3");
+
+        listaTiposIoTs.add("Lâmpada");
+        listaTiposIoTs.add("Sensor Temperatura");
+
+
+
 
         TelaUsuario telaUsuario = new TelaUsuario();
         Tela tela1 = new Tela("Teste Usuário",
@@ -41,10 +54,10 @@ public class Main{
                              telaUsuario
                             );
 
-        TelaAdministrador telaAdministrador = new TelaAdministrador();
-        Tela tela2 = new Tela("Teste Administrador",
+        TelaAdministrador telaAdministrador = new TelaAdministrador(listaIDs, listaTiposIoTs);
+        Tela tela2 = new Tela("Teste Administrador23",
                              EnumMenus.LISTA_IOTS,
-                             telaAdministrador
+                             telaAdministrador.getTelaAdministrador()
                             );
 
 
