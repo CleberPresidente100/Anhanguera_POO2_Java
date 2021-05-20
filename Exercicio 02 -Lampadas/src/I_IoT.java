@@ -1,5 +1,5 @@
 
-public interface IoT
+public interface I_IoT
 { 
     int getId();
     void setId(int id);

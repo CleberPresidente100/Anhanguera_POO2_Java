@@ -1,7 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.awt.BorderLayout;
 import javax.swing.*;
 
 
@@ -28,6 +28,8 @@ public class TelaAdministrador extends JPanel{
     private ArrayList<String> listaIDs;
     private ArrayList<String> listaTiposIoTs;
 
+    private static final int TELA_LARGURA = 500;
+
 
 
 
@@ -43,7 +45,8 @@ public class TelaAdministrador extends JPanel{
 
         telaAdministrador = this;
         // telaAdministrador.setLayout(new BoxLayout(telaAdministrador, BoxLayout.Y_AXIS));
-        telaAdministrador.setLayout(null);
+        // telaAdministrador.setLayout(null);
+        telaAdministrador.setLayout(new BorderLayout());
 
         ConstruirLayout();
     }
@@ -51,66 +54,105 @@ public class TelaAdministrador extends JPanel{
     private void ConstruirLayout(){
 
 
-        telaAdministrador.setSize(500, 500);
+        telaAdministrador.setSize(TELA_LARGURA, 500);
 
 
-        lblTitulo = new JLabel("Cadastro de IoTs");
-        lblTitulo.setBounds(170, 40, 200, 25);
-        telaAdministrador.add(lblTitulo);
+        // lblTitulo = new JLabel("Cadastro de IoTs");
+        // lblTitulo.setBounds(170, (TELA_LARGURA - 200) / 2, 200, 25);
+        // telaAdministrador.add(lblTitulo);
         
-        lblID = new JLabel("ID");
-        lblID.setBounds(50, 95, 200, 25);
-        telaAdministrador.add(lblID);
+        // lblID = new JLabel("ID");
+        // lblID.setBounds(50, 95, 200, 25);
+        // telaAdministrador.add(lblID);
 
-        lblTipoIoT = new JLabel("Tipo Item IoT");
-        lblTipoIoT.setBounds(50, 130, 200, 25);
-        telaAdministrador.add(lblTipoIoT);
+        // lblTipoIoT = new JLabel("Tipo Item IoT");
+        // lblTipoIoT.setBounds(50, 130, 200, 25);
+        // telaAdministrador.add(lblTipoIoT);
 
-        lblNome = new JLabel("Nome");
-        lblNome.setBounds(50, 165, 200, 25);
-        telaAdministrador.add(lblNome);
+        // lblNome = new JLabel("Nome");
+        // lblNome.setBounds(50, 165, 200, 25);
+        // telaAdministrador.add(lblNome);
 
-        lblLocal = new JLabel("Localizacao");
-        lblLocal.setBounds(50, 200, 200, 25);
-        telaAdministrador.add(lblLocal);
+        // lblLocal = new JLabel("Localizacao");
+        // lblLocal.setBounds(50, 200, 200, 25);
+        // telaAdministrador.add(lblLocal);
+
+        // txtNome = new JTextField();
+        // txtNome.setBounds(160, 165, 200, 25);
+        // telaAdministrador.add(txtNome);
+
+        // txtLocal = new JTextField();
+        // txtLocal.setBounds(160, 200, 200, 25);
+        // telaAdministrador.add(txtLocal);
+        
+        // btnAdicionarAlterar = new JButton("Adicionar/Alterar");
+        // btnAdicionarAlterar.setBounds(50, 245, 190, 50);
+        // telaAdministrador.add(btnAdicionarAlterar);
+        
+        // btnRemover = new JButton("Remover");
+        // btnRemover.setBounds(250, 245, 110, 50);
+        // telaAdministrador.add(btnRemover);
+
+        // cboxID = new JComboBox<String>();
+        // cboxID.setBounds(160, 95, 200, 25);
+        // cboxID = preencherComboBox(cboxID, listaIDs);
+        // telaAdministrador.add(cboxID);
+
+        // cboxTipoIoT = new JComboBox<String>();
+        // cboxTipoIoT.setBounds(160, 130, 200, 25);
+        // cboxTipoIoT = preencherComboBox(cboxTipoIoT, listaTiposIoTs);
+        // telaAdministrador.add(cboxTipoIoT);
+
+
+        
 
         txtNome = new JTextField();
-        txtNome.setBounds(160, 165, 200, 25);
-        telaAdministrador.add(txtNome);
-
         txtLocal = new JTextField();
-        txtLocal.setBounds(160, 200, 200, 25);
-        telaAdministrador.add(txtLocal);
-        
-        btnAdicionarAlterar = new JButton("Adicionar/Alterar");
-        btnAdicionarAlterar.setBounds(50, 245, 190, 50);
-        telaAdministrador.add(btnAdicionarAlterar);
-        
-        btnRemover = new JButton("Remover");
-        btnRemover.setBounds(250, 245, 110, 50);
-        telaAdministrador.add(btnRemover);
 
         cboxID = new JComboBox<String>();
-        cboxID.setBounds(160, 95, 200, 25);
         cboxID = preencherComboBox(cboxID, listaIDs);
-        telaAdministrador.add(cboxID);
 
         cboxTipoIoT = new JComboBox<String>();
-        cboxTipoIoT.setBounds(160, 130, 200, 25);
         cboxTipoIoT = preencherComboBox(cboxTipoIoT, listaTiposIoTs);
-        telaAdministrador.add(cboxTipoIoT);
 
-        // Box caixaEsquerda = Box.createVerticalBox();        
-        // caixaEsquerda.add(Box.createVerticalStrut(25));
-        // caixaEsquerda.add(lblID);
-        // caixaEsquerda.add(lblTipoIoT);
-        // caixaEsquerda.add(lblNome);
-        // caixaEsquerda.add(lblLocal);
-        // caixaEsquerda.add(Box.createGlue());
-        // JPanel painelEsquerdo = new JPanel();
-        // painelEsquerdo.add(caixaEsquerda);
+        btnRemover = new JButton("Remover");
+        btnAdicionarAlterar = new JButton("Adicionar/Alterar");
 
 
+        Box caixaEsquerda = Box.createVerticalBox();        
+        caixaEsquerda.add(new JLabel("ID"));
+        caixaEsquerda.add(new JLabel("Tipo Item IoT"));
+        caixaEsquerda.add(new JLabel("Nome"));
+        caixaEsquerda.add(new JLabel("Localizacao"));
+        caixaEsquerda.add(Box.createGlue());
+        
+
+        Box caixaDireita = Box.createVerticalBox();        
+        caixaDireita.add(cboxID);
+        caixaDireita.add(cboxTipoIoT);
+        caixaDireita.add(txtNome);
+        caixaDireita.add(txtLocal);
+        caixaDireita.add(Box.createVerticalStrut(10));
+        caixaDireita.add(Box.createGlue());
+
+
+        Box caixaCampos = Box.createHorizontalBox();
+        caixaCampos.add(caixaEsquerda);
+        caixaCampos.add(Box.createVerticalStrut(10));
+        caixaCampos.add(caixaDireita);
+        caixaCampos.add(Box.createVerticalStrut(10));
+        caixaCampos.add(Box.createGlue());
+
+
+        Box caixaBotoes = Box.createHorizontalBox();
+        caixaBotoes.add(btnAdicionarAlterar);
+        caixaBotoes.add(Box.createHorizontalStrut(30));
+        caixaBotoes.add(btnRemover);
+
+        telaAdministrador.add(caixaCampos);
+        // telaAdministrador.add(caixaBotoes);
+        
+        // telaAdministrador.add(caixaEsquerda);
 
         // Box caixaDireita = Box.createVerticalBox();
         // caixaDireita.add((Box.createVerticalStrut(25)));

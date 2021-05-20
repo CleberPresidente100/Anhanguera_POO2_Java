@@ -1,0 +1,12 @@
+
+    Para adicionar o JDBC no VSCode é necessário seguir os seguintes passos:
+
+1) Abrir o Java Projects na Aba Lateral.
+2) Ir até o Referenced Libraries.
+3) Clicar em "Adicionar".
+4) Selecione o arquivo do JDBC.
+
+    Pronto !
+    O JDBC foi adicionado.
+
+    

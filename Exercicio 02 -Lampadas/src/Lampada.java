@@ -1,7 +1,7 @@
 
 
 // A Interface Comparable é utilizada para realizar a ordenação de objetos da Classe Lampada.
-public class Lampada implements IoT, Comparable<Lampada>
+public class Lampada implements I_IoT, Comparable<Lampada>
 {
     private int idLampada;
     private boolean estado;
