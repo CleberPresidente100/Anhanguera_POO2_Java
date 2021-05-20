@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 public class CRUD_Fabricantes {
@@ -17,18 +18,31 @@ public class CRUD_Fabricantes {
 
 
 //    R -> Read
-    public ResultSet getListaFabricantes() {
-        ResultSet dados = null;
+    public ArrayList<Fabricantes> getListaFabricantes() {
+
+        ResultSet resposta = null;
+        ArrayList<Fabricantes> listaFabricantes = new ArrayList<Fabricantes>();
+
         try {
             PreparedStatement comando =
                     conexao.prepareStatement("SELECT * FROM FABRICANTES");
-            dados = comando.executeQuery();
-            var teste = dados;
+            resposta = comando.executeQuery();
+
+            while (resposta.next()) {
+
+                Fabricantes item = new Fabricantes();
+
+                item.Id = resposta.getInt("ID");
+                item.Fabricante = resposta.getString("FABRICANTE");
+
+                listaFabricantes.add(item);
+              }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return dados;
+
+        return listaFabricantes;
     }
 
 

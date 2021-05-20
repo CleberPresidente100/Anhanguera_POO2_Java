@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 public class CRUD_IoTs {
@@ -33,18 +34,36 @@ public class CRUD_IoTs {
 
 
 //    R -> Read
-    public ResultSet getListaIoTs() {
-        ResultSet dados = null;
+    public ArrayList<IoTs> getListaIoTs() {
+
+        ResultSet resposta = null;
+        ArrayList<IoTs> listaIoTs = new ArrayList<IoTs>();
+
+
         try {
-            PreparedStatement comando =
-                    conexao.prepareStatement("SELECT * FROM IOTS");
-            dados = comando.executeQuery();
-            var teste = dados;
+            
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM IOTS");
+            resposta = comando.executeQuery();
+
+            while (resposta.next()) {
+
+                IoTs item = new IoTs();
+
+                item.Id = resposta.getInt("ID");
+                item.CategoriaId = resposta.getInt("CATEGORIA_ID");
+                item.FabricanteId = resposta.getInt("FABRICANTE_ID");
+                item.Nome = resposta.getString("NOME");
+                item.Localizacao = resposta.getString("LOCALIZACAO");
+
+                listaIoTs.add(item);
+              }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return dados;
+
+        
+        return listaIoTs;
     }
 
 

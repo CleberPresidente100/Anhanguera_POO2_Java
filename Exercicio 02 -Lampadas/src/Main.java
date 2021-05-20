@@ -45,9 +45,9 @@ public class Main{
         CRUD_Fabricantes crud_Fabricantes = new CRUD_Fabricantes(conexaoMySQL.getConexao());
         CRUD_CategoriaIoTs crud_CategoriaIoTs = new CRUD_CategoriaIoTs(conexaoMySQL.getConexao());
 
-        var listaIoTs = crud_IoTs.getListaIoTs();
-        var listaFabricantes = crud_Fabricantes.getListaFabricantes();
-        var listaCategoriasIoTs = crud_CategoriaIoTs.getListaCategorias();
+        ArrayList<IoTs> listaIoTs = crud_IoTs.getListaIoTs();
+        ArrayList<Fabricantes> listaFabricantes = crud_Fabricantes.getListaFabricantes();
+        ArrayList<CategoriasIoTs> listaCategoriasIoTs = crud_CategoriaIoTs.getListaCategorias();
 
 
 
@@ -84,6 +84,8 @@ public class Main{
         listaTelas.adicionarTela(tela2);
 
         TelaPrincipal telaPrincipal = new TelaPrincipal(listaTelas.getListaTelas());
+
+        conexaoMySQL.closeConexao();
         
     }
 }
