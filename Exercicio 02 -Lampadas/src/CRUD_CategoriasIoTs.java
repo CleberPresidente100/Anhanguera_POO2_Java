@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
-public class CRUD_CategoriaIoTs {
+public class CRUD_CategoriasIoTs {
 
-    Connection conexao;
+    private static Connection conexao;
 
-    public CRUD_CategoriaIoTs (Connection conexao){
-        this.conexao = conexao;
+    public CRUD_CategoriasIoTs (Connection conexao){
+        CRUD_CategoriasIoTs.conexao = conexao;
     }
 
 

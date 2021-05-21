@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class CRUD_IoTs {
 
-    Connection conexao;
+    private static Connection conexao;
 
     public CRUD_IoTs (Connection conexao){
-        this.conexao = conexao;
+        CRUD_IoTs.conexao = conexao;
     }
 
 

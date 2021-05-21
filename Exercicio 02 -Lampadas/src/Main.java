@@ -43,24 +43,31 @@ public class Main{
 
         CRUD_IoTs crud_IoTs = new CRUD_IoTs(conexaoMySQL.getConexao());
         CRUD_Fabricantes crud_Fabricantes = new CRUD_Fabricantes(conexaoMySQL.getConexao());
-        CRUD_CategoriaIoTs crud_CategoriaIoTs = new CRUD_CategoriaIoTs(conexaoMySQL.getConexao());
+        CRUD_CategoriasIoTs crud_CategoriaIoTs = new CRUD_CategoriasIoTs(conexaoMySQL.getConexao());
 
         ArrayList<IoTs> listaIoTs = crud_IoTs.getListaIoTs();
         ArrayList<Fabricantes> listaFabricantes = crud_Fabricantes.getListaFabricantes();
         ArrayList<CategoriasIoTs> listaCategoriasIoTs = crud_CategoriaIoTs.getListaCategorias();
 
+        ListaIoTs listaIoTs2 = new ListaIoTs();
+        listaIoTs2.inicializaListaIoTs(conexaoMySQL);
+        ListaFabricantes listaFabricantes2 = new ListaFabricantes();
+        listaFabricantes2.iniciazliaListaFabricantes(conexaoMySQL);
+        ListaCategoriasIoTs listaCategoriasIoTs2 = new ListaCategoriasIoTs();
+        listaCategoriasIoTs2.inicializarListaCategoriasIoTs(conexaoMySQL);
 
 
-        ArrayList<String> listaIDs = new ArrayList<String>();
-        ArrayList<String> listaTiposIoTs = new ArrayList<String>();
+
+        // ArrayList<String> listaIDs = new ArrayList<String>();
+        // ArrayList<String> listaTiposIoTs = new ArrayList<String>();
 
 
-        listaIDs.add("1");
-        listaIDs.add("2");
-        listaIDs.add("3");
+        // listaIDs.add("1");
+        // listaIDs.add("2");
+        // listaIDs.add("3");
 
-        listaTiposIoTs.add("Lâmpada");
-        listaTiposIoTs.add("Sensor Temperatura");
+        // listaTiposIoTs.add("Lâmpada");
+        // listaTiposIoTs.add("Sensor Temperatura");
 
 
 
@@ -71,7 +78,7 @@ public class Main{
                              telaUsuario
                             );
 
-        TelaAdministrador telaAdministrador = new TelaAdministrador(listaIDs, listaTiposIoTs);
+        TelaAdministrador telaAdministrador = new TelaAdministrador();
         Tela tela2 = new Tela("Teste Administrador23",
                              EnumMenus.LISTA_IOTS,
                              telaAdministrador.getTelaAdministrador()
@@ -85,7 +92,10 @@ public class Main{
 
         TelaPrincipal telaPrincipal = new TelaPrincipal(listaTelas.getListaTelas());
 
-        conexaoMySQL.closeConexao();
+
+        // System.out.print("PROGRAMA ENCERRADO");
+
+        // conexaoMySQL.closeConexao();
         
     }
 }

@@ -40,7 +40,7 @@ public class TelaPrincipal extends JFrame implements ActionListener{
             listaIDs.add("3");
             listaTiposIoTs.add("Lâmpada");
             listaTiposIoTs.add("Sensor Temperatura");
-            TelaAdministrador teste = new TelaAdministrador(listaIDs, listaTiposIoTs);
+            TelaAdministrador teste = new TelaAdministrador();
             MontarTela(teste.getTelaAdministrador());
         }
     }

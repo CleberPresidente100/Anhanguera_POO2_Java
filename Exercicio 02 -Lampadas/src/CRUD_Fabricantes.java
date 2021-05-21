@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class CRUD_Fabricantes {
 
-    Connection conexao;
+    private static Connection conexao;
 
     public CRUD_Fabricantes (Connection conexao){
-        this.conexao = conexao;
+        CRUD_Fabricantes.conexao = conexao;
     }
 
 

@@ -2,10 +2,10 @@
 import java.sql.*;
 
 
-public class ConexaoMySQL {
+public class ConexaoMySQL implements I_Conexao{
     
     // Parâmetros para se Estabelecer a Conexão com o Banco de Dados
-    private Connection conexao;
+    private static Connection conexao;
     private static final String DataBaseAdrress = "den1.mysql6.gear.host";
     private static final String DataBaseName = "gerenciadoriots";
     private static final String Parameters = "";
@@ -17,13 +17,13 @@ public class ConexaoMySQL {
 
     public ConexaoMySQL(){
 
-        if(conexao == null){
+        if(ConexaoMySQL.conexao == null){
 
             System.out.print("\n\n\nEndereço --> " + URLDB + "\n\n");
 
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                conexao = DriverManager.getConnection(URLDB, usuario, senha);
+                ConexaoMySQL.conexao = DriverManager.getConnection(URLDB, usuario, senha);
                 System.out.print("Conexão com o Banco de Dados \"" + DataBaseAdrress + "/" + DataBaseName + "\" foi estabelecida com Sucesso !\n\n\n");
             }
             catch(Exception ex){
@@ -36,18 +36,18 @@ public class ConexaoMySQL {
 
 
     public Connection getConexao(){
-        return conexao;
+        return ConexaoMySQL.conexao;
     }
 
 
 
     public void closeConexao(){
 
-        if(conexao != null){
+        if(ConexaoMySQL.conexao != null){
 
             try{
 
-                conexao.close();
+                ConexaoMySQL.conexao.close();
                 System.out.print("Conexão com o Banco de Dados \"" + DataBaseAdrress + "/" + DataBaseName + "\" foi encerrada com Sucesso !");
             }
             catch(Exception ex){
