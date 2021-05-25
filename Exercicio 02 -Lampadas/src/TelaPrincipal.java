@@ -68,7 +68,7 @@ public class TelaPrincipal extends JFrame implements ActionListener{
         JMenu menuOpcoes = new JMenu("Opções");
         menuOpcoes.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JMenu menuListaIoTs = new JMenu("Lista de IoTs");
+        JMenu menuListaIoTs = new JMenu("Monitorar IoTs");
         menuListaIoTs.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         for (Tela item : listaTelas) {
@@ -128,6 +128,8 @@ public class TelaPrincipal extends JFrame implements ActionListener{
 
     private void MontarTela(JComponent tela){
 
+        containerTelaPrincipal.setVisible(false);
+
         containerTelaPrincipal.removeAll();
         // containerTelaPrincipal.add(BorderLayout.NORTH, barraMenu);
         // containerTelaPrincipal.add(barraMenu, BorderLayout.NORTH);
@@ -139,8 +141,8 @@ public class TelaPrincipal extends JFrame implements ActionListener{
             // containerTelaPrincipal.add(tela, BorderLayout.PAGE_END);
             containerTelaPrincipal.add(tela, BorderLayout.CENTER);
         }
-
-        containerTelaPrincipal.repaint();
+        // containerTelaPrincipal.repaint();
+        containerTelaPrincipal.setVisible(true);
     }
 
 

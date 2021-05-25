@@ -65,6 +65,51 @@ public class ListaIoTs {
 
 
 
+    public boolean incluirIoT(IoTs novoIoT){
+
+        boolean resultado;
+
+        CRUD_IoTs crud_IoTs = new CRUD_IoTs(ListaIoTs.conexao);
+
+        resultado = crud_IoTs.incluirIoT(novoIoT);
+        
+        updateListaIoTs();
+
+        return resultado;
+    }
+
+
+
+    public boolean atualizarIoT(IoTs novoIoT){
+
+        boolean resultado;
+
+        CRUD_IoTs crud_IoTs = new CRUD_IoTs(ListaIoTs.conexao);
+
+        resultado = crud_IoTs.atualizarDadosIoT(novoIoT);
+        
+        updateListaIoTs();
+
+        return resultado;
+    }
+
+
+
+    public boolean excluirIoT(int idIoT){
+
+        boolean resultado;
+
+        CRUD_IoTs crud_IoTs = new CRUD_IoTs(ListaIoTs.conexao);
+
+        resultado = crud_IoTs.excluirIoT(idIoT);
+        
+        updateListaIoTs();
+
+        return resultado;
+    }
+
+
+
     private ArrayList<IoTs> ObterDescricoesChavesEstrangeiras(ArrayList<IoTs> lista){
         
         CRUD_Fabricantes crud_Fabricantes = new CRUD_Fabricantes(ListaIoTs.conexao);

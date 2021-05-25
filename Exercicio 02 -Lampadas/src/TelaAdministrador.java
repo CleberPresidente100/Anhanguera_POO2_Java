@@ -1,8 +1,7 @@
 
 import java.util.ArrayList;
-import java.util.List;
-import java.awt.BorderLayout;
 import javax.swing.*;
+import java.awt.Color;
 import java.awt.event.*;
 
 
@@ -20,9 +19,9 @@ public class TelaAdministrador extends JPanel{
     private JTextField txtNome;
     private JTextField txtLocal;
 
-    private JComboBox cboxID;
-    private JComboBox cboxFabricante;
-    private JComboBox cboxCategoriaIoT;
+    private JComboBox<String> cboxID;
+    private JComboBox<String> cboxFabricante;
+    private JComboBox<String> cboxCategoriaIoT;
 
     private JButton btnRemover;
     private JButton btnAdicionarAlterar;
@@ -32,15 +31,21 @@ public class TelaAdministrador extends JPanel{
     private ArrayList<String> listaComboBoxCategoriasIoTs;
 
     private static final int TELA_LARGURA = 500;
+    private static final String TEXTO_BOTAO_INCLUIR = "Incluir";
+    private static final String TEXTO_BOTAO_SALVAR = "Salvar Alterações";
 
 
 
 
     public TelaAdministrador (){
 
-        listaComboBoxIDs = this.getListaIDs();
-        listaComboBoxFabricantes = this.getListaFabricantes();
-        listaComboBoxCategoriasIoTs = this.getListaCategoriasIoTs();
+        listaComboBoxIDs = new ArrayList<String>();
+        listaComboBoxFabricantes = new ArrayList<String>();
+        listaComboBoxCategoriasIoTs = new ArrayList<String>();
+
+        this.getListaIDs();
+        this.getListaFabricantes();
+        this.getListaCategoriasIoTs();
         
         CriarTela();
     }
@@ -48,9 +53,7 @@ public class TelaAdministrador extends JPanel{
     private void CriarTela(){
 
         telaAdministrador = this;
-        // telaAdministrador.setLayout(new BoxLayout(telaAdministrador, BoxLayout.Y_AXIS));
         telaAdministrador.setLayout(null);
-        // telaAdministrador.setLayout(new BorderLayout());
 
         ConstruirLayout();
     }
@@ -61,55 +64,49 @@ public class TelaAdministrador extends JPanel{
         telaAdministrador.setSize(TELA_LARGURA, 500);
 
 
-        lblTitulo = new JLabel("Cadastro de IoTs");
-        lblTitulo.setBounds((TELA_LARGURA - 200) / 2, 50, 200, 25);
+        lblTitulo = new JLabel("Gerenciamento de IoTs");
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitulo.setBounds(0, 30, 500, 25);
+        lblTitulo.setFont(lblTitulo.getFont().deriveFont(20f));
         telaAdministrador.add(lblTitulo);
         
         lblID = new JLabel("ID");
-        lblID.setBounds(50, 95, 200, 25);
+        lblID.setBounds(80, 95, 200, 25);
         telaAdministrador.add(lblID);
 
         lblCategoriaIoT = new JLabel("Categoria IoT");
-        lblCategoriaIoT.setBounds(50, 130, 200, 25);
+        lblCategoriaIoT.setBounds(80, 130, 200, 25);
         telaAdministrador.add(lblCategoriaIoT);
 
         lblFabricante = new JLabel("Fabricante");
-        lblFabricante.setBounds(50, 165, 200, 25);
+        lblFabricante.setBounds(80, 165, 200, 25);
         telaAdministrador.add(lblFabricante);
 
         lblNome = new JLabel("Nome");
-        lblNome.setBounds(50, 200, 200, 25);
+        lblNome.setBounds(80, 200, 200, 25);
         telaAdministrador.add(lblNome);
 
         lblLocal = new JLabel("Localizacao");
-        lblLocal.setBounds(50, 235, 200, 25);
+        lblLocal.setBounds(80, 235, 200, 25);
         telaAdministrador.add(lblLocal);
 
         txtNome = new JTextField();
-        txtNome.setBounds(160, 200, 200, 25);
+        txtNome.setBounds(190, 200, 200, 25);
         telaAdministrador.add(txtNome);
 
         txtLocal = new JTextField();
-        txtLocal.setBounds(160, 235, 200, 25);
+        txtLocal.setBounds(190, 235, 200, 25);
         telaAdministrador.add(txtLocal);
-        
-        btnAdicionarAlterar = new JButton("Adicionar/Alterar");
-        btnAdicionarAlterar.setBounds(50, 280, 190, 50);
-        telaAdministrador.add(btnAdicionarAlterar);
-        
-        btnRemover = new JButton("Remover");
-        btnRemover.setBounds(250, 280, 110, 50);
-        telaAdministrador.add(btnRemover);
 
         cboxID = new JComboBox<String>();
-        cboxID.setBounds(160, 95, 200, 25);
+        cboxID.setBounds(190, 95, 200, 25);
         cboxID = preencherComboBox(cboxID, listaComboBoxIDs);
         cboxID.addActionListener(new ActionListener(){
 
             public void actionPerformed(ActionEvent event){
         
                 // System.out.print(event.getSource());
-                JComboBox cb = (JComboBox)event.getSource();
+                JComboBox<String> cb = (JComboBox<String>) event.getSource();
                 String ID = (String)cb.getSelectedItem();
                 AtualizarCampos(ID);
             }
@@ -117,130 +114,42 @@ public class TelaAdministrador extends JPanel{
         telaAdministrador.add(cboxID);
 
         cboxCategoriaIoT = new JComboBox<String>();
-        cboxCategoriaIoT.setBounds(160, 130, 200, 25);
+        cboxCategoriaIoT.setBounds(190, 130, 200, 25);
         cboxCategoriaIoT = preencherComboBox(cboxCategoriaIoT, listaComboBoxCategoriasIoTs);
         telaAdministrador.add(cboxCategoriaIoT);
 
         cboxFabricante = new JComboBox<String>();
-        cboxFabricante.setBounds(160, 165, 200, 25);
+        cboxFabricante.setBounds(190, 165, 200, 25);
         cboxFabricante = preencherComboBox(cboxFabricante, listaComboBoxFabricantes);
         telaAdministrador.add(cboxFabricante);
 
-
+        btnAdicionarAlterar = new JButton(TEXTO_BOTAO_INCLUIR);
+        btnAdicionarAlterar.setBounds(80, 280, 190, 50);
+        btnAdicionarAlterar.setBackground(Color.GREEN.darker());
+        btnAdicionarAlterar.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                AdicionarAlterarIoT(e.getActionCommand());
+            }
+        });
+        telaAdministrador.add(btnAdicionarAlterar);
         
-
-        // txtNome = new JTextField();
-        // txtLocal = new JTextField();
-
-        // cboxID = new JComboBox<String>();
-        // cboxID = preencherComboBox(cboxID, listaIDs);
-
-        // cboxCategoriaIoT = new JComboBox<String>();
-        // cboxCategoriaIoT = preencherComboBox(cboxCategoriaIoT, listaCategoriasIoTs);
-
-        // btnRemover = new JButton("Remover");
-        // btnAdicionarAlterar = new JButton("Adicionar/Alterar");
-
-
-        // Box caixaEsquerda = Box.createVerticalBox();        
-        // caixaEsquerda.add(new JLabel("ID"));
-        // caixaEsquerda.add(new JLabel("Tipo Item IoT"));
-        // caixaEsquerda.add(new JLabel("Nome"));
-        // caixaEsquerda.add(new JLabel("Localizacao"));
-        // caixaEsquerda.add(Box.createGlue());
+        btnRemover = new JButton("Remover");
+        btnRemover.setBounds(280, 280, 110, 50);
+        btnRemover.setBackground(Color.ORANGE);
+        btnRemover.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                RemoverIoT();               
+            }
+        });
+        telaAdministrador.add(btnRemover);
         
-
-        // Box caixaDireita = Box.createVerticalBox();        
-        // caixaDireita.add(cboxID);
-        // caixaDireita.add(cboxCategoriaIoT);
-        // caixaDireita.add(txtNome);
-        // caixaDireita.add(txtLocal);
-        // caixaDireita.add(Box.createVerticalStrut(10));
-        // caixaDireita.add(Box.createGlue());
-
-
-        // Box caixaCampos = Box.createHorizontalBox();
-        // caixaCampos.add(caixaEsquerda);
-        // caixaCampos.add(Box.createVerticalStrut(10));
-        // caixaCampos.add(caixaDireita);
-        // caixaCampos.add(Box.createVerticalStrut(10));
-        // caixaCampos.add(Box.createGlue());
-
-
-        // Box caixaBotoes = Box.createHorizontalBox();
-        // caixaBotoes.add(btnAdicionarAlterar);
-        // caixaBotoes.add(Box.createHorizontalStrut(30));
-        // caixaBotoes.add(btnRemover);
-
-        // telaAdministrador.add(caixaCampos);
-        // // telaAdministrador.add(caixaBotoes);
-        
-        // // telaAdministrador.add(caixaEsquerda);
-
-
-
-
-
-
-
-        // Box caixaDireita = Box.createVerticalBox();
-        // caixaDireita.add((Box.createVerticalStrut(25)));
-        // caixaDireita.add(cboxID);
-        // caixaDireita.add(cboxTipoIoT);
-        // caixaDireita.add(txtNome);
-        // caixaDireita.add(txtLocal);
-        // caixaDireita.add(Box.createGlue());
-        // JPanel painelDireito = new JPanel();
-        // painelDireito.add(caixaDireita);
-        
-
-
-        // Box caixaCampos = Box.createHorizontalBox();
-        // caixaCampos.add(painelEsquerdo);
-        // caixaCampos.add(Box.createHorizontalStrut(5));
-        // caixaCampos.add(painelDireito);
-        // caixaCampos.add(Box.createGlue());
-        // JPanel painelCampos = new JPanel();
-        // painelCampos.add(caixaCampos);
-
-
-
-        // Box caixaBotoes = Box.createHorizontalBox();
-        // caixaBotoes.add((Box.createHorizontalStrut(25)));
-        // caixaBotoes.add(btnAdicionarAlterar);
-        // caixaBotoes.add(btnRemover);
-        // caixaBotoes.add(Box.createGlue());
-        // JPanel painelBotoes = new JPanel();
-        // painelBotoes.add(caixaBotoes);
-
-
-
-        // Box tela = Box.createVerticalBox();
-        // tela.add((Box.createVerticalStrut(5)));
-        // tela.add(lblTitulo);
-        // tela.add(painelCampos);
-        // tela.add(painelBotoes);
-        // tela.add(Box.createGlue());
-
-
-    //     content.setLayout(new BorderLayout());
-    // content.add(top, BorderLayout.CENTER);
-
-    // BoxLayout box = new BoxLayout(content, BoxLayout.Y_AXIS);
-
-    // content.setLayout(box);
-    // content.add(top);
-
-
-        // telaAdministrador.add(painelCampos);
-
 
         telaAdministrador.setVisible(true);
     }
 
 
 
-    public JComboBox preencherComboBox(JComboBox campoComboBox, ArrayList<String> listaItens){
+    private JComboBox<String> preencherComboBox(JComboBox<String> campoComboBox, ArrayList<String> listaItens){
 
         for (String item : listaItens) {
 
@@ -252,26 +161,25 @@ public class TelaAdministrador extends JPanel{
 
 
 
-    private ArrayList<String> getListaIDs(){
+    // private ArrayList<String> getListaIDs(){
+    private void getListaIDs(){
 
         ListaIoTs listaIoTs = new ListaIoTs();
         ArrayList<IoTs> lista = listaIoTs.getListaIoTs();
-        ArrayList<String> listaIDs = new ArrayList<String>();
 
-        listaIDs.add("");
+        listaComboBoxIDs.clear();
+        listaComboBoxIDs.add("");
 
         for (IoTs item : lista) {
 
-            listaIDs.add(Integer.toString(item.Id));
+            listaComboBoxIDs.add(Integer.toString(item.Id));
         }
-
-
-        return listaIDs;
     }
 
 
 
-    private ArrayList<String> getListaCategoriasIoTs(){
+    private void getListaCategoriasIoTs(){
+        // private ArrayList<String> getListaCategoriasIoTs(){
 
         ListaCategoriasIoTs listaCategoriasIoTs = new ListaCategoriasIoTs();
         ArrayList<CategoriasIoTs> lista = listaCategoriasIoTs.getListaCategoriasIoTs();
@@ -284,13 +192,14 @@ public class TelaAdministrador extends JPanel{
             listaCategorias.add(item.Categoria);
         }
 
-
-        return listaCategorias;
+        listaComboBoxCategoriasIoTs.clear();
+        listaComboBoxCategoriasIoTs = listaCategorias;
     }
 
 
 
-    private ArrayList<String> getListaFabricantes(){
+    private void getListaFabricantes(){
+        // private ArrayList<String> getListaFabricantes(){
 
         ListaFabricantes listaFabricantes = new ListaFabricantes();
         ArrayList<Fabricantes> lista = listaFabricantes.getListaFabricantes();
@@ -304,12 +213,14 @@ public class TelaAdministrador extends JPanel{
         }
 
 
-        return listaNomesFabricantes;
+        listaComboBoxFabricantes.clear();
+        listaComboBoxFabricantes = listaNomesFabricantes;
     }
 
 
 
-    public void AtualizarCampos(String ID){
+    private
+     void AtualizarCampos(String ID){
 
         int idIoT = 0;
 
@@ -318,23 +229,26 @@ public class TelaAdministrador extends JPanel{
         }
         catch (Exception e){
 
-        }
-
-        
-        if(idIoT == 0){
-
+            System.out.println(cboxID.getItemCount());
+            this.cboxID.setSelectedItem("");
             this.txtNome.setText("");
             this.txtLocal.setText("");
             this.cboxFabricante.setSelectedIndex(0);
             this.cboxCategoriaIoT.setSelectedIndex(0);
+            this.btnAdicionarAlterar.setText(TEXTO_BOTAO_INCLUIR);
 
             return;
         }
+
+
 
         IoTs itemIoT = new IoTs();
         ListaIoTs listaIoTs = new ListaIoTs();
 
         itemIoT = listaIoTs.getIoT(idIoT);
+
+        // Altera o Texto do Botão
+        this.btnAdicionarAlterar.setText(TEXTO_BOTAO_SALVAR);
 
         // Altera os Campos de Texto
         this.txtNome.setText(itemIoT.Nome);
@@ -377,6 +291,120 @@ public class TelaAdministrador extends JPanel{
             this.cboxCategoriaIoT.setSelectedIndex(0);
         }
 
+    }
+
+
+
+    private void AdicionarAlterarIoT(String acaoExecutada){
+
+        IoTs novoRegistro = new IoTs();
+
+        novoRegistro.Id = 0;
+        novoRegistro.CategoriaId = 0;
+        novoRegistro.FabricanteId = null;
+        novoRegistro.Nome = txtNome.getText();
+        novoRegistro.Localizacao = txtLocal.getText();
+        novoRegistro.NomeFabricante = cboxFabricante.getSelectedItem().toString();
+        novoRegistro.NomeCategoria = cboxCategoriaIoT.getSelectedItem().toString();
+
+        // Obtem o ID da Categoria Selecionada
+        ListaCategoriasIoTs listaCategoriasIoTs = new ListaCategoriasIoTs();                     
+        for (CategoriasIoTs item : listaCategoriasIoTs.getListaCategoriasIoTs()) {                    
+            if(item.Categoria.equals(novoRegistro.NomeCategoria)){
+                novoRegistro.CategoriaId = item.Id;
+            }
+        }
+
+
+        // Caso o ID não seja encontrado, exibe mensagem de erro.
+        if(!(novoRegistro.CategoriaId > 0)){
+            JOptionPane.showMessageDialog(this, "O campo Categoria do IoT é Obrigatório.");
+            return;
+        }
+
+
+        // Obtem o ID do Fabricante Selecionado
+        if(novoRegistro.NomeFabricante.length() > 0){
+            ListaFabricantes listaFabricantes = new ListaFabricantes();                     
+            for (Fabricantes item : listaFabricantes.getListaFabricantes()) {                    
+                if(item.Fabricante.equals(novoRegistro.NomeFabricante)){
+                    novoRegistro.FabricanteId = item.Id;
+                }
+            }
+        }
+        
+
+        boolean resultado = false;
+        ListaIoTs listaIoTs = new ListaIoTs();
+
+        // ALTERAR REGISTRO JÁ EXISTENTE
+        if(acaoExecutada.equals(TEXTO_BOTAO_SALVAR)){
+            novoRegistro.Id = Integer.parseInt(cboxID.getSelectedItem().toString());
+            resultado = listaIoTs.atualizarIoT(novoRegistro);
+
+            if(resultado){
+                JOptionPane.showMessageDialog(this, "Registro Alterado com Sucesso !");
+                AtualizarCampos(null);
+                return;
+            }
+    
+            JOptionPane.showMessageDialog(this, "Falha ao Alterar o Registro.");
+            return;
+        }
+
+
+        // INCLUIR NOVO REGISTRO
+        resultado = listaIoTs.incluirIoT(novoRegistro);
+
+        if(resultado){
+            JOptionPane.showMessageDialog(this, "Registro Incluído com Sucesso !");
+            RecarregarListaIDs();
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, "Falha ao Incluir o Registro.");
+        return; 
+    }
+
+
+
+    private void RemoverIoT(){
+
+        int idIoT = 0;
+        boolean resultado = false;
+        ListaIoTs listaIoTs = new ListaIoTs();
+
+        try{
+
+            idIoT = Integer.parseInt(cboxID.getSelectedItem().toString());
+            resultado = listaIoTs.excluirIoT(idIoT);
+
+            if(resultado){
+                JOptionPane.showMessageDialog(this, "Registro Excluído com Sucesso !");
+                RecarregarListaIDs();
+                return;
+            }
+
+            JOptionPane.showMessageDialog(this, "Falha ao Excluir o Registro.");
+            return;
+        }
+        catch(Exception e){
+            
+        }
+
+        return;
+    }
+
+
+
+    private void RecarregarListaIDs(){
+
+        getListaIDs();
+        cboxID.removeAllItems();
+        System.out.println(cboxID.getItemCount());
+        cboxID = preencherComboBox(cboxID, listaComboBoxIDs);
+        System.out.println(cboxID.getItemCount());
+        AtualizarCampos(null);
     }
 
 

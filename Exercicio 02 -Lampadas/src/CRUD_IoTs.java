@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 
 
@@ -16,15 +17,22 @@ public class CRUD_IoTs {
 
 //    C --> Create
     public boolean incluirIoT(IoTs iot) {
+
         try {
             PreparedStatement comando =
-                    conexao.prepareStatement("INSERT INTO IOTS (Id, CategoriaId, FabricanteId, Nome, Localizacao) VALUES (?,?,?,?,?)");
-            comando.setInt(1, iot.Id);
-            comando.setInt(2, iot.CategoriaId);
-            comando.setInt(3, iot.FabricanteId);
-            comando.setString(4, iot.Nome);
-            comando.setString(5, iot.Localizacao);
-            return comando.execute();
+                    conexao.prepareStatement("INSERT INTO IOTS (CATEGORIA_ID, FABRICANTE_ID, NOME, LOCALIZACAO) VALUES (?,?,?,?)");
+            comando.setInt(1, iot.CategoriaId);
+            if(iot.FabricanteId == null || iot.FabricanteId == 0){
+                comando.setNull(2, Types.INTEGER);
+            }
+            else{
+                comando.setInt(2, iot.FabricanteId);
+            }
+                // comando.setInt(2, iot.FabricanteId);
+            comando.setString(3, iot.Nome);
+            comando.setString(4, iot.Localizacao);
+            comando.execute();
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,13 +80,19 @@ public class CRUD_IoTs {
     {
         try {
             PreparedStatement comando =
-                    conexao.prepareStatement("UPDATE IOTS SET CategoriaId=?, FabricanteId=?, Nome=?, Localizacao=? WHERE id=?");
+                    conexao.prepareStatement("UPDATE IOTS SET CATEGORIA_ID=?, FABRICANTE_ID=?, NOME=?, LOCALIZACAO=? WHERE id=?");
             comando.setInt(1, iot.CategoriaId);
-            comando.setInt(2, iot.FabricanteId);
+            if(iot.FabricanteId == null || iot.FabricanteId == 0){
+                comando.setNull(2, Types.INTEGER);
+            }
+            else{
+                comando.setInt(2, iot.FabricanteId);
+            }
             comando.setString(3, iot.Nome);
             comando.setString(4, iot.Localizacao);
             comando.setInt(5, iot.Id);
-            return comando.execute();
+            comando.execute();
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +108,8 @@ public class CRUD_IoTs {
             PreparedStatement comando =
                     conexao.prepareStatement("DELETE FROM IOTS WHERE id=?");
             comando.setInt(1, idIoT);
-            return comando.execute();
+            comando.execute();
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();

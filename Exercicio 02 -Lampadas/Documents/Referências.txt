@@ -4,6 +4,11 @@ Acessados em 05/2021.
  * COMPARABLE
     https://kodehelp.com/sort-an-arraylist-of-objects-in-java/
 
+
+ * LAYOUT
+    https://docs.oracle.com/javase/8/javafx/layout-tutorial/index.html
+
+
  * JFRAME
 
     https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI.html
