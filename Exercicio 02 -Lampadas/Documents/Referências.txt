@@ -18,8 +18,15 @@ Acessados em 05/2021.
     https://www.tutorialsfield.com/jframe-java-tutorial/
     https://www.javatpoint.com/java-jframe
 
+
  * JDBC
     https://www.youtube.com/watch?v=YczqOe6btEA
 
 
+ * STRING COMPARATION
+    https://www.javatpoint.com/string-comparison-in-java
+
+
+ * JOptionPane
+   https://mkyong.com/swing/java-swing-how-to-make-a-confirmation-dialog/
 

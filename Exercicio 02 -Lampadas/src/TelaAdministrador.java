@@ -105,7 +105,6 @@ public class TelaAdministrador extends JPanel{
 
             public void actionPerformed(ActionEvent event){
         
-                // System.out.print(event.getSource());
                 JComboBox<String> cb = (JComboBox<String>) event.getSource();
                 String ID = (String)cb.getSelectedItem();
                 AtualizarCampos(ID);
@@ -229,7 +228,6 @@ public class TelaAdministrador extends JPanel{
         }
         catch (Exception e){
 
-            System.out.println(cboxID.getItemCount());
             this.cboxID.setSelectedItem("");
             this.txtNome.setText("");
             this.txtLocal.setText("");
@@ -318,7 +316,7 @@ public class TelaAdministrador extends JPanel{
 
         // Caso o ID não seja encontrado, exibe mensagem de erro.
         if(!(novoRegistro.CategoriaId > 0)){
-            JOptionPane.showMessageDialog(this, "O campo Categoria do IoT é Obrigatório.");
+            JOptionPane.showMessageDialog(this, "O campo Categoria do IoT é Obrigatório.", "Erro !", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -344,11 +342,11 @@ public class TelaAdministrador extends JPanel{
 
             if(resultado){
                 JOptionPane.showMessageDialog(this, "Registro Alterado com Sucesso !");
-                AtualizarCampos(null);
+            AtualizarCampos(null);
                 return;
             }
     
-            JOptionPane.showMessageDialog(this, "Falha ao Alterar o Registro.");
+            JOptionPane.showMessageDialog(this, "Falha ao Alterar o Registro.", "Erro !", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -362,7 +360,7 @@ public class TelaAdministrador extends JPanel{
             return;
         }
 
-        JOptionPane.showMessageDialog(this, "Falha ao Incluir o Registro.");
+        JOptionPane.showMessageDialog(this, "Falha ao Incluir o Registro.", "Erro !", JOptionPane.ERROR_MESSAGE);
         return; 
     }
 
@@ -377,22 +375,29 @@ public class TelaAdministrador extends JPanel{
         try{
 
             idIoT = Integer.parseInt(cboxID.getSelectedItem().toString());
-            resultado = listaIoTs.excluirIoT(idIoT);
+            int confirmacao = JOptionPane.showConfirmDialog(
+                                                             this
+                                                            ,"Confirma Exclusão do Registro ?"
+                                                            ,"Excuir Registro"
+                                                            ,JOptionPane.YES_NO_OPTION
+                                                            ,JOptionPane.ERROR_MESSAGE
+                                                            );
 
-            if(resultado){
-                JOptionPane.showMessageDialog(this, "Registro Excluído com Sucesso !");
-                RecarregarListaIDs();
+            if(confirmacao == JOptionPane.YES_OPTION){
+
+                resultado = listaIoTs.excluirIoT(idIoT);
+                if(resultado){
+                    JOptionPane.showMessageDialog(this, "Registro Excluído com Sucesso !");
+                    RecarregarListaIDs();
+                    return;
+                }
+
+                JOptionPane.showMessageDialog(this, "Falha ao Excluir o Registro.", "Erro !", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            JOptionPane.showMessageDialog(this, "Falha ao Excluir o Registro.");
-            return;
         }
         catch(Exception e){
-            
         }
-
-        return;
     }
 
 
@@ -401,9 +406,7 @@ public class TelaAdministrador extends JPanel{
 
         getListaIDs();
         cboxID.removeAllItems();
-        System.out.println(cboxID.getItemCount());
         cboxID = preencherComboBox(cboxID, listaComboBoxIDs);
-        System.out.println(cboxID.getItemCount());
         AtualizarCampos(null);
     }
 

@@ -8,7 +8,7 @@ public class ConexaoMySQL implements I_Conexao{
     private static Connection conexao;
     private static final String DataBaseAdrress = "den1.mysql6.gear.host";
     private static final String DataBaseName = "gerenciadoriots";
-    private static final String Parameters = "";
+    // private static final String Parameters = "";
     private static final String URLDB = "jdbc:mysql://" + DataBaseAdrress + "/" + DataBaseName;// + Parameters;
     private static final String usuario = "gerenciadoriots";
     private static final String senha = "Un8XM~6L3zJ_";
