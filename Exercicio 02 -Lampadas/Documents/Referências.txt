@@ -7,7 +7,12 @@ Acessados em 05/2021.
 
  * LAYOUT
     https://docs.oracle.com/javase/8/javafx/layout-tutorial/index.html
+    https://zetcode.com/javaswing/swinglayoutmanagement/
 
+
+ * BOX
+    https://docs.oracle.com/javase/8/docs/api/index.html?javax/swing/Box.html
+    https://www.programmingforfuture.com/2009/02/boxlayout-in-java-swing.html
 
  * JFRAME
 

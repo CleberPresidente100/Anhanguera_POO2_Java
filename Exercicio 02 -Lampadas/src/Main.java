@@ -4,49 +4,33 @@ public class Main{
 
     public static void main(String[] args) throws InterruptedException{
 
-        // IoTs ioTs = new IoTs();
-        // Fabricantes fabricantes = new Fabricantes();
-        // CategoriasIoTs categoriasIoTs = new CategoriasIoTs();
+        // ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
 
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        // CRUD_IoTs crud_IoTs = new CRUD_IoTs(conexaoMySQL.getConexao());
+        // CRUD_Fabricantes crud_Fabricantes = new CRUD_Fabricantes(conexaoMySQL.getConexao());
+        // CRUD_CategoriasIoTs crud_CategoriaIoTs = new CRUD_CategoriasIoTs(conexaoMySQL.getConexao());
 
-        CRUD_IoTs crud_IoTs = new CRUD_IoTs(conexaoMySQL.getConexao());
-        CRUD_Fabricantes crud_Fabricantes = new CRUD_Fabricantes(conexaoMySQL.getConexao());
-        CRUD_CategoriasIoTs crud_CategoriaIoTs = new CRUD_CategoriasIoTs(conexaoMySQL.getConexao());
+        // ArrayList<IoTs> listaIoTs = crud_IoTs.getListaIoTs();
+        // ArrayList<Fabricantes> listaFabricantes = crud_Fabricantes.getListaFabricantes();
+        // ArrayList<CategoriasIoTs> listaCategoriasIoTs = crud_CategoriaIoTs.getListaCategorias();
 
-        ArrayList<IoTs> listaIoTs = crud_IoTs.getListaIoTs();
-        ArrayList<Fabricantes> listaFabricantes = crud_Fabricantes.getListaFabricantes();
-        ArrayList<CategoriasIoTs> listaCategoriasIoTs = crud_CategoriaIoTs.getListaCategorias();
-
-        ListaIoTs listaIoTs2 = new ListaIoTs();
-        listaIoTs2.inicializaListaIoTs(conexaoMySQL);
-        ListaFabricantes listaFabricantes2 = new ListaFabricantes();
-        listaFabricantes2.iniciazliaListaFabricantes(conexaoMySQL);
-        ListaCategoriasIoTs listaCategoriasIoTs2 = new ListaCategoriasIoTs();
-        listaCategoriasIoTs2.inicializarListaCategoriasIoTs(conexaoMySQL);
-
-
-
-        // ArrayList<String> listaIDs = new ArrayList<String>();
-        // ArrayList<String> listaTiposIoTs = new ArrayList<String>();
-
-
-        // listaIDs.add("1");
-        // listaIDs.add("2");
-        // listaIDs.add("3");
-
-        // listaTiposIoTs.add("Lâmpada");
-        // listaTiposIoTs.add("Sensor Temperatura");
+        // ListaIoTs listaIoTs2 = new ListaIoTs();
+        // listaIoTs2.inicializaListaIoTs(conexaoMySQL);
+        // ListaFabricantes listaFabricantes2 = new ListaFabricantes();
+        // listaFabricantes2.iniciazliaListaFabricantes(conexaoMySQL);
+        // ListaCategoriasIoTs listaCategoriasIoTs2 = new ListaCategoriasIoTs();
+        // listaCategoriasIoTs2.inicializarListaCategoriasIoTs(conexaoMySQL);
 
 
 
 
 
-        TelaAdministrador telaAdministrador = new TelaAdministrador();
-        Tela tela1 = new Tela("Administração",
-                             EnumMenus.OPCOES,
-                             telaAdministrador.getTelaAdministrador()
-                            );
+
+        // TelaAdministrador telaAdministrador = new TelaAdministrador();
+        // Tela tela1 = new Tela("Administração",
+        //                      EnumMenus.OPCOES,
+        //                      telaAdministrador.getTelaAdministrador()
+        //                     );
 
         TelaUsuario telaUsuario = new TelaUsuario();
         Tela tela2 = new Tela("Teste Usuário",
@@ -54,17 +38,17 @@ public class Main{
                                 telaUsuario
                             );
 
-        TelaListaIoTs telaIoTs = new TelaListaIoTs();
-        Tela tela3 = new Tela("Tela IoTs",
-                                EnumMenus.LISTA_IOTS,
-                                telaIoTs.getTelaListaIoTs()
-                            );
+        // TelaListaIoTs telaIoTs = new TelaListaIoTs();
+        // Tela tela3 = new Tela("Tela IoTs",
+        //                         EnumMenus.LISTA_IOTS,
+        //                         telaIoTs.getTelaListaIoTs()
+        //                     );
 
 
         ListaTelas listaTelas = new ListaTelas();
-        listaTelas.adicionarTela(tela1);
+        // listaTelas.adicionarTela(tela1);
         listaTelas.adicionarTela(tela2);
-        listaTelas.adicionarTela(tela3);
+        // listaTelas.adicionarTela(tela3);
 
         TelaPrincipal telaPrincipal = new TelaPrincipal(listaTelas.getListaTelas());
 
