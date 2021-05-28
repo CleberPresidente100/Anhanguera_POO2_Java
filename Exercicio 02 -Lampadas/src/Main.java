@@ -32,7 +32,7 @@ public class Main{
         //                      telaAdministrador.getTelaAdministrador()
         //                     );
 
-        TelaUsuario telaUsuario = new TelaUsuario();
+        TelaLampadas telaUsuario = new TelaLampadas();
         Tela tela2 = new Tela("Teste Usuário",
                                 EnumMenus.LISTA_IOTS,
                                 telaUsuario
